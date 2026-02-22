@@ -91,16 +91,7 @@ const seedProducts = async () => {
                 isSpecial: true,
                 image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400'
             },
-            {
-                name: 'Whole Chicken (With Skin)',
-                category: 'Whole Chicken',
-                price: 200,
-                unit: 'kg',
-                description: 'Whole chicken with skin, perfect for roasting.',
-                isAvailable: true,
-                isSpecial: false,
-                image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82571?w=400'
-            },
+
             {
                 name: 'Curry Cut (Small Pieces)',
                 category: 'Chicken Curry Cut',
@@ -121,46 +112,7 @@ const seedProducts = async () => {
                 isSpecial: false,
                 image: 'https://images.unsplash.com/photo-1610057099431-d73a1c9d2f2f?w=400'
             },
-            {
-                name: 'Boneless Chicken Breast',
-                category: 'Boneless Chicken',
-                price: 350,
-                unit: 'kg',
-                description: 'Premium boneless breast pieces, lean and tender.',
-                isAvailable: true,
-                isSpecial: false,
-                image: 'https://images.unsplash.com/photo-1604503468506-a8da13d82571?w=400'
-            },
-            {
-                name: 'Boneless Chicken Thigh',
-                category: 'Boneless Chicken',
-                price: 380,
-                unit: 'kg',
-                description: 'Juicy boneless thigh meat, perfect for tikka and kebabs.',
-                isAvailable: true,
-                isSpecial: true,
-                image: 'https://images.unsplash.com/photo-1587593810167-a84920ea0781?w=400'
-            },
-            {
-                name: 'Chicken Wings',
-                category: 'Chicken Wings',
-                price: 200,
-                unit: 'kg',
-                description: 'Fresh chicken wings, great for frying and grilling.',
-                isAvailable: true,
-                isSpecial: false,
-                image: 'https://images.unsplash.com/photo-1527477396000-e27163b4bcd1?w=400'
-            },
-            {
-                name: 'Chicken Wings (Party Pack)',
-                category: 'Chicken Wings',
-                price: 190,
-                unit: 'kg',
-                description: 'Bulk party pack wings, minimum 2 kg order.',
-                isAvailable: true,
-                isSpecial: true,
-                image: 'https://images.unsplash.com/photo-1527477396000-e27163b4bcd1?w=400'
-            },
+
             {
                 name: 'Chicken Liver',
                 category: 'Chicken Liver & Gizzard',
