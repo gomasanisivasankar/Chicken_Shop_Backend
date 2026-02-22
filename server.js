@@ -20,10 +20,9 @@ const allowedOrigins = [
 
 app.use(cors({
     origin: function (origin, callback) {
-        // Allow requests with no origin (mobile apps, curl, etc.)
         if (!origin) return callback(null, true);
         if (allowedOrigins.some(o => origin.startsWith(o))) return callback(null, true);
-        callback(null, true); // Allow all in production for now
+        callback(null, false);
     },
     credentials: true
 }));
@@ -69,6 +68,11 @@ app.use('/api/orders', require('./routes/orders'));
 // Health check
 app.get('/api/health', (req, res) => {
     res.json({ status: 'ok', message: 'Goutham Fresh Chicken API is running 🐔' });
+});
+
+// Root route
+app.get('/', (req, res) => {
+    res.json({ status: 'ok', message: 'Goutham Fresh Chicken API 🐔', docs: '/api/health' });
 });
 
 // Seed default products function
@@ -209,40 +213,16 @@ const seedAdmin = async () => {
     }
 };
 
-// Initialize database and seed data
-let isDbConnected = false;
+// Start server
+const PORT = process.env.PORT || 5000;
 
-const initDB = async () => {
-    if (!isDbConnected) {
-        await connectDB();
-        await seedProducts();
-        await seedAdmin();
-        isDbConnected = true;
-    }
-};
+connectDB().then(async () => {
+    await seedProducts();
+    await seedAdmin();
 
-// For Vercel: Connect to DB on every request (uses cached connection)
-app.use(async (req, res, next) => {
-    try {
-        await initDB();
-        next();
-    } catch (error) {
-        console.error('DB connection error:', error);
-        res.status(500).json({ message: 'Database connection failed' });
-    }
-});
-
-// Development: Start local server
-if (process.env.NODE_ENV !== 'production') {
-    const PORT = process.env.PORT || 5000;
-    initDB().then(() => {
-        app.listen(PORT, () => {
-            console.log(`\n🐔 Goutham Fresh Chicken API`);
-            console.log(`🚀 Server running on http://localhost:${PORT}`);
-            console.log(`📋 API Health: http://localhost:${PORT}/api/health\n`);
-        });
+    app.listen(PORT, () => {
+        console.log(`\n🐔 Goutham Fresh Chicken API`);
+        console.log(`🚀 Server running on http://localhost:${PORT}`);
+        console.log(`📋 API Health: http://localhost:${PORT}/api/health\n`);
     });
-}
-
-// Export for Vercel serverless
-module.exports = app;
+});
